@@ -30,7 +30,7 @@ jobs:
       - name: Prepare Blazor WASM for GitHub Pages
         uses: na1307/blazor-github-pages@v1
         with:
-          project-path: YamsHouse.csproj
+          project-path: Yamine.csproj
           main-repo: true
       - name: Setup Pages
         uses: actions/configure-pages@v5
