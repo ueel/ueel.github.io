@@ -2,31 +2,62 @@
 
 <RadzenLayout>
     <RadzenHeader>
-        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
-            <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
-            <RadzenLabel Text="Header" />
-        </RadzenStack>
+        <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenColumn Size="5">
+                <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)"></RadzenSidebarToggle>
+            </RadzenColumn>
+            <RadzenColumn Size="7">
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+                    <RadzenProfileMenu Visible="@Security.IsAuthenticated()" Click="@ProfileMenuClick">
+                        <ChildContent>
+                            <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" />
+                            <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" Visible="@Security.IsInRole("Sales Manager")" />
+                            <RadzenProfileMenuItem Path="application-roles" Icon="security" Text="Roles" Visible="@Security.IsInRole("Sales Manager")" />
+                            <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
+                        </ChildContent>
+                        <Template>
+                            @Security.User?.Name
+                            <RadzenGravatar Email="@Security.User?.Name" />
+                        </Template>
+                    </RadzenProfileMenu>
+                </RadzenStack>
+            </RadzenColumn>
+        </RadzenRow>
     </RadzenHeader>
+
     <RadzenSidebar Responsive="false" Style="width: max-content">
+        <RadzenStack AlignItems="Radzen.AlignItems.Center" Visible="@sidebarExpanded"
+                     class="rz-py-4 rz-py-lg-6"
+                     Style="padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border);">
+            <RadzenImage Path="images/duck-1864493.png" style="width: 48px; height: 48px;"></RadzenImage>
+            <RadzenText Text="Yams House" TextStyle="Radzen.Blazor.TextStyle.Subtitle1" class="rz-mb-0" style="color: var(--rz-primary-light);" />
+        </RadzenStack>
         <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
-            <RadzenPanelMenuItem Text="Overview" Icon="home"  Path="/" />
-            <RadzenPanelMenuItem Text="Dashboard" Icon="dashboard" Path="counter" />
-            <RadzenPanelMenuItem Text="UI Fundamentals" Icon="auto_awesome" Path="weather">
-                <RadzenPanelMenuItem Text="Themes" Icon="color_lens" />
-                <RadzenPanelMenuItem Text="Colors" Icon="invert_colors" />
+            <RadzenPanelMenuItem Text="Dashboard" Path="" Icon="home" />
+            <RadzenPanelMenuItem Text="Contacts" Path="counter" Icon="perm_contact_calendar" />
+            <RadzenPanelMenuItem Text="Tasks" Path="weather" Icon="work" />
+            <RadzenPanelMenuItem Text="Opportunities" Path="opportunities" Icon="shopping_cart" />
+            <RadzenPanelMenuItem Text="Settings" Visible="@Security.IsInRole("Sales Manager")">
+                <RadzenPanelMenuItem Text="OpportunityStatuses" Path="opportunity-statuses" />
+                <RadzenPanelMenuItem Text="TaskStatuses" Path="task-statuses" />
+                <RadzenPanelMenuItem Text="TaskTypes" Path="task-types" />
             </RadzenPanelMenuItem>
         </RadzenPanelMenu>
+
+        <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" Visible="@sidebarExpanded"
+                     class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
+            <RadzenText Text="Yams House v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="Copyright Ⓒ 2024" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+        </RadzenStack>
     </RadzenSidebar>
+
     <RadzenBody>
         <div class="rz-p-4">
             @Body
         </div>
     </RadzenBody>
+
     <RadzenFooter>
         Footer
     </RadzenFooter>
 </RadzenLayout>
-
-@code {
-    bool sidebarExpanded = true;
-}
