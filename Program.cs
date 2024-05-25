@@ -25,7 +25,6 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().
 builder.Services.AddHttpClient<SecurityService>(client => { client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress); });
 builder.Services.AddScoped<SecurityService>();
 
-builder.Services.AddScoped<AuthenticationStateProvider, ApplicationAuthenticationStateProvider>();
 
 
 var app = builder.Build();

@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.5" />
-    <PackageReference Include="Radzen.Blazor" Version="4.31.5" />
+    <PackageReference Include="Radzen.Blazor" Version="4.32.1" />
   </ItemGroup>
 
 </Project>
