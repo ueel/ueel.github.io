@@ -1,0 +1,11 @@
+﻿@page "/login"
+@layout LoginLayout
+
+<RadzenCard Class="rz-shadow-0 rz-border-radius-0 rz-p-12">
+    <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H2" Class="rz-mb-6">
+        Login
+    </RadzenText>
+    <RadzenTemplateForm Data=@("SimpleLogin") Action="authentication/login">
+        <RadzenLogin AllowRegister="false" AllowResetPassword="false" />
+    </RadzenTemplateForm>
+</RadzenCard>

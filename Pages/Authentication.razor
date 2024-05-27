@@ -1,0 +1,16 @@
+﻿@page "/authentication/{action}"
+
+
+@code{
+    [Parameter] public string? Action { get; set; }
+
+    [Parameter] public string Username { get; set; }
+
+    [Parameter] public string Password { get; set; }
+
+    protected override void OnInitialized()
+    {
+        
+        Console.WriteLine($"{Username} {Password}");
+    }
+}

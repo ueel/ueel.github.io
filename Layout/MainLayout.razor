@@ -9,17 +9,18 @@
             <RadzenColumn Size="7">
                 <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
                     <RadzenProfileMenu Visible="@Security.IsAuthenticated()" Click="@ProfileMenuClick">
+                        <Template>
+                            @Security.User?.Name
+                            <RadzenGravatar Email="@Security.User?.Name" />
+                        </Template>
                         <ChildContent>
                             <RadzenProfileMenuItem Path="profile" Icon="settings" Text="Profile" />
                             <RadzenProfileMenuItem Path="application-users" Icon="person" Text="Users" Visible="@Security.IsInRole("Sales Manager")" />
                             <RadzenProfileMenuItem Path="application-roles" Icon="security" Text="Roles" Visible="@Security.IsInRole("Sales Manager")" />
                             <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new" />
                         </ChildContent>
-                        <Template>
-                            @Security.User?.Name
-                            <RadzenGravatar Email="@Security.User?.Name" />
-                        </Template>
                     </RadzenProfileMenu>
+                    <RadzenLink class="rz-mr-6" Path="login" Text="Login" Visible="@(!Security.IsAuthenticated())" />
                 </RadzenStack>
             </RadzenColumn>
         </RadzenRow>
