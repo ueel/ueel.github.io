@@ -3,7 +3,7 @@ using Yamine.Shared.TheMovie;
 
 namespace Yamine.Services;
 
-public class MovieService(HttpClient http, IConfiguration config) : IMovieService
+public class MovieService(HttpClient http) : IMovieService
 {
     public async Task<HttpResponseMessage> AuthenticateAsync()
     {
@@ -11,7 +11,7 @@ public class MovieService(HttpClient http, IConfiguration config) : IMovieServic
     }
 
 
-    public async Task<MovieResponse> GetPopulars(int page)
+    public async Task<MovieResponse?> GetPopulars(int page)
     {
         var parameters = new Dictionary<string, string>()
             {
@@ -23,12 +23,12 @@ public class MovieService(HttpClient http, IConfiguration config) : IMovieServic
     }
 
 
-    public async Task<NowPlaying> GetNowPlaying(int page)
+    public async Task<NowPlaying?> GetNowPlaying(int page)
     {
         return await GetData<NowPlaying>("now_playing", page);
     }
 
-    private async Task<T> GetData<T>(string method, int page)
+    private async Task<T?> GetData<T>(string method, int page)
     {
         var parameters = new Dictionary<string, string>()
             {
@@ -45,8 +45,8 @@ public interface IMovieService
 {
     Task<HttpResponseMessage> AuthenticateAsync();
 
-    Task<MovieResponse> GetPopulars(int page);
-    Task<NowPlaying> GetNowPlaying(int page);
+    Task<MovieResponse?> GetPopulars(int page);
+    Task<NowPlaying?> GetNowPlaying(int page);
 
     //  fetchNowPlaying: "movie/now_playing",
     //fetchTrending: "/trending/all/week",

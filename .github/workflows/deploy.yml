@@ -51,5 +51,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         env:
+            THE_MOVIE_ACCESS_TOKEN : ${{ secrets.THE_MOVIE_ACCESS_TOKEN }}
             THE_MOVIE_API_KEY : ${{ secrets.THE_MOVIE_API_KEY }}
+
 
