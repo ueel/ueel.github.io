@@ -27,6 +27,8 @@ builder.Services.AddScoped<SecurityService>();
 
 var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie") ?? "https://api.themoviedb.org/3/";
 
+Console.WriteLine(Environment.GetEnvironmentVariable("TEST_KEY"));
+
 builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
 {
     client.BaseAddress = new Uri(movieUrl);
