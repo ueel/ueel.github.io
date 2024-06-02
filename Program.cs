@@ -33,7 +33,7 @@ builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
     client.BaseAddress = new Uri(movieUrl);
     client.DefaultRequestHeaders.Add("accept","application/json");
     client.DefaultRequestHeaders.Authorization
-                         = new AuthenticationHeaderValue("Bearer", Environment.GetEnvironmentVariable("THE_MOVIE_API_KEY") 
+                         = new AuthenticationHeaderValue("Bearer", Environment.GetEnvironmentVariable("THE_MOVIE_ACCESS_TOKEN") 
                          ?? builder.Configuration.GetSection("Tokens").GetValue<string>("TheMovie"));
 });
 

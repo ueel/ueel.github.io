@@ -35,8 +35,8 @@
         </RadzenStack>
         <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
             <RadzenPanelMenuItem Text="Home" Path="" Icon="home" />
-            <RadzenPanelMenuItem Text="Movie" Icon="movie">                
-                <RadzenPanelMenuItem Text="Now Playing" Path="nowplaying" Icon="description" />
+            <RadzenPanelMenuItem Text="Movie" Icon="movie" IconColor="@Colors.Danger">                
+                <RadzenPanelMenuItem Text="Now Playing" Path="nowplaying" Icon="description"/>
                 <RadzenPanelMenuItem Text="Popular" Path="popular" Icon="assignment" />
             </RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Contacts" Path="counter" Icon="perm_contact_calendar" />
@@ -49,7 +49,7 @@
         </RadzenPanelMenu>
 
         <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" Visible="@sidebarExpanded"
-                     class="rz-p-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
+                     class="rz-p-5 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
             <RadzenText Text="Yams House v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
             <RadzenText Text="Copyright Ⓒ 2024" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" style="color: var(--rz-text-disabled-color);" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
         </RadzenStack>
