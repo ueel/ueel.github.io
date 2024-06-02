@@ -26,6 +26,7 @@ builder.Services.AddScoped<SecurityService>();
 var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie") ?? "https://api.themoviedb.org/3/";
 
 Console.WriteLine("Test Key : " + Environment.GetEnvironmentVariable("TEST_KEY"));
+Console.WriteLine("Github ENV : " + Environment.GetEnvironmentVariable("GITHUB_ENV"));
 
 builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
 {

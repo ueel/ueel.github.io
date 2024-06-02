@@ -3,7 +3,7 @@
 public class MovieResponse
 {
     public int page { get; set; }
-    public List<MovieInfo> results { get; set; }
+    public List<MovieInfo>? results { get; set; }
     public int total_pages { get; set; }
     public int total_results { get; set; }
 }
@@ -11,7 +11,7 @@ public class MovieResponse
 
 public class NowPlaying : MovieResponse
 {
-    public Dates dates { get; set; }
+    public Dates? dates { get; set; }
 }
 
 public class Dates
