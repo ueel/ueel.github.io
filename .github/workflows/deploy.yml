@@ -50,4 +50,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        env:
+            THE_MOVIE_API_KEY : ${{ secrets.THE_MOVIE_API_KEY }}
 
