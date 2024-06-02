@@ -1,0 +1,13 @@
+﻿@page "/nowplaying"
+@inject IMovieService movie
+@using Yamine.Shared.TheMovie
+
+<h3>Now Playing</h3>
+
+<RadzenDataList AllowVirtualization=@allowVirtualization class="rz-mx-5" Style="@(allowVirtualization ? "height:400px;overflow:auto;" : "")"
+                WrapItems="@(!allowVirtualization)" AllowPaging="@(!allowVirtualization)"
+                Data="@Movies" TItem="MovieInfo" PageSize="20" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true">
+    <Template Context="movie">
+        <MovieCard Movie="movie"></MovieCard>
+    </Template>
+</RadzenDataList>

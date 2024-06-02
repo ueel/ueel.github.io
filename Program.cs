@@ -26,14 +26,15 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().
 builder.Services.AddHttpClient<SecurityService>(client => { client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress); });
 builder.Services.AddScoped<SecurityService>();
 
-var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie");
+var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie") ?? "https://api.themoviedb.org/3/";
 
 builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
 {
     client.BaseAddress = new Uri(movieUrl);
     client.DefaultRequestHeaders.Add("accept","application/json");
     client.DefaultRequestHeaders.Authorization
-                         = new AuthenticationHeaderValue("Bearer", Environment.GetEnvironmentVariable("THE_MOVIE_API_KEY") ?? builder.Configuration.GetSection("ApiKeys").GetValue<string>("TheMovie"));
+                         = new AuthenticationHeaderValue("Bearer", Environment.GetEnvironmentVariable("THE_MOVIE_API_KEY") 
+                         ?? builder.Configuration.GetSection("Tokens").GetValue<string>("TheMovie"));
 });
 
 

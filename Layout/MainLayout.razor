@@ -35,7 +35,10 @@
         </RadzenStack>
         <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
             <RadzenPanelMenuItem Text="Home" Path="" Icon="home" />
-            <RadzenPanelMenuItem Text="Movie" Path="movie" Icon="movie" />
+            <RadzenPanelMenuItem Text="Movie" Icon="movie">                
+                <RadzenPanelMenuItem Text="Now Playing" Path="nowplaying" Icon="description" />
+                <RadzenPanelMenuItem Text="Popular" Path="popular" Icon="assignment" />
+            </RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Contacts" Path="counter" Icon="perm_contact_calendar" />
             @* <RadzenPanelMenuItem Text="Opportunities" Path="opportunities" Icon="shopping_cart" /> *@
             <RadzenPanelMenuItem Text="Settings" Visible="@Security.IsInRole("Sales Manager")">
@@ -52,7 +55,7 @@
         </RadzenStack>
     </RadzenSidebar>
 
-    <RadzenBody>
+    <RadzenBody Style="background-color:#FFFFFF">
         <div class="rz-p-4">
             @Body
         </div>

@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using Yamine.Shared.TheMovie.Movie;
+using Yamine.Shared.TheMovie;
 
 namespace Yamine.Services;
 
@@ -11,7 +11,7 @@ public class MovieService(HttpClient http, IConfiguration config) : IMovieServic
     }
 
 
-    public async Task<PopularResponse> GetPopulars(int page)
+    public async Task<MovieResponse> GetPopulars(int page)
     {
         var parameters = new Dictionary<string, string>()
             {
@@ -19,7 +19,24 @@ public class MovieService(HttpClient http, IConfiguration config) : IMovieServic
                 { "page", $"{page}" }
         };
 
-        return await http.GetFromJsonAsync<PopularResponse>("movie/popular?" + await new FormUrlEncodedContent(parameters).ReadAsStringAsync());
+        return await http.GetFromJsonAsync<MovieResponse>("movie/popular?" + await new FormUrlEncodedContent(parameters).ReadAsStringAsync());
+    }
+
+
+    public async Task<NowPlaying> GetNowPlaying(int page)
+    {
+        return await GetData<NowPlaying>("now_playing", page);
+    }
+
+    private async Task<T> GetData<T>(string method, int page)
+    {
+        var parameters = new Dictionary<string, string>()
+            {
+                { "language", "ko-kr" },
+                { "page", $"{page}" }
+        };
+
+        return await http.GetFromJsonAsync<T>($"movie/{method}?" + await new FormUrlEncodedContent(parameters).ReadAsStringAsync());
     }
 }
 
@@ -28,7 +45,8 @@ public interface IMovieService
 {
     Task<HttpResponseMessage> AuthenticateAsync();
 
-    Task<PopularResponse> GetPopulars(int page);
+    Task<MovieResponse> GetPopulars(int page);
+    Task<NowPlaying> GetNowPlaying(int page);
 
     //  fetchNowPlaying: "movie/now_playing",
     //fetchTrending: "/trending/all/week",
