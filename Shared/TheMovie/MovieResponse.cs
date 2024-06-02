@@ -23,13 +23,13 @@ public class Dates
 public class MovieInfo
 {
     public bool Adult { get; set; }
-    public List<int> Genre_Ids { get; set; }
+    public List<int>? Genre_Ids { get; set; }
     public int Id { get; set; }
-    public string Original_Language { get; set; }
-    public string Original_Title { get; set; }
-    public string Overview { get; set; }
+    public string? Original_Language { get; set; }
+    public string? Original_Title { get; set; }
+    public string? Overview { get; set; }
     public double Popularity { get; set; }
-    public string Title { get; set; }
+    public string? Title { get; set; }
     public bool Video { get; set; }
     public double Vote_Average { get; set; }
     public int Vote_Count { get; set; }
@@ -37,7 +37,7 @@ public class MovieInfo
     public string? backdrop_path { get; set; }
     public string ThumnailPath => backdrop_path == null ? "images/duck-1864493.png" : $"https://image.tmdb.org/t/p/original/{backdrop_path}";
     
-    public string poster_path { get; set; }
+    public string? poster_path { get; set; }
     public string PosterPath => $"https://image.tmdb.org/t/p/original/{poster_path}";
 
     public string? release_date { get; set; }
