@@ -76,7 +76,6 @@ namespace Yamine.Services
             {
                 User = await GetUserById(userId);
             }
-
             return IsAuthenticated();
         }
 

@@ -1,0 +1,30 @@
+﻿@inject IMovieService movie
+
+@page "/movie"
+
+<h3>Movie</h3>
+
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true"
+                AllowPaging="true" PageSize="@itemCount" PageNumbersCount="@pageNumbersCount"
+                PagerHorizontalAlign="HorizontalAlign.Center" ShowPagingSummary="true"
+                LoadData="LoadData" Data="@Movies" Count="@movieCount" IsLoading="@isLoading"
+                LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@SelectedMovies>
+    <Columns>
+        <RadzenDataGridColumn Title="Poster" Frozen="true" Sortable="false" Filterable="false" Width="80px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenImage Path="@data.ThumnailPath" class="rz-gravatar" AlternateText="@(data.Title + " " + data.Original_Title)" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Property="Title" Title="Title" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn Property="Original_Title" Title="Original Title" Width="160px" />
+        <RadzenDataGridColumn Property="Release_Date" Title="Release" FormatString="{0:d}" Width="150px" />
+        <RadzenDataGridColumn Property="Popularity" Title="관객" Width="120px" />
+        <RadzenDataGridColumn Property="Adult" Title="Adult" Width="110px" />
+        <RadzenDataGridColumn Property="Vote_Average" Title="Vote Avg" Width="160px" />
+        <RadzenDataGridColumn Property="Vote_Count" Title="Vote Count" Width="160px" />
+        <RadzenDataGridColumn Property="Overview" Title="Overview" />
+    </Columns>
+</RadzenDataGrid>
+
+

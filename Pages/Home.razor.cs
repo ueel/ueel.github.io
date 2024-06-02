@@ -1,78 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using Radzen;
-using Yamine.Services;
+﻿namespace Yamine.Pages;
 
-namespace Yamine.Pages
+public partial class Home
 {
-    public partial class Home
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject]
-        protected IJSRuntime JSRuntime { get; set; }
+        //var res = await movie.AuthenticateAsync();
 
-        [Inject]
-        protected NavigationManager NavigationManager { get; set; }
-
-        [Inject]
-        protected DialogService DialogService { get; set; }
-
-        [Inject]
-        protected TooltipService TooltipService { get; set; }
-
-        [Inject]
-        protected ContextMenuService ContextMenuService { get; set; }
-
-        [Inject]
-        protected NotificationService NotificationService { get; set; }
-
-        [Inject]
-        protected SecurityService Security { get; set; }
-
-
-
-        protected override async Task OnInitializedAsync()
-        {
-
-        }
-
-
-
-        Stats monthlyStats { get; set; }
-        IEnumerable<RevenueByCompany> revenueByCompany { get; set; }
-        IEnumerable<RevenueByMonth> revenueByMonth { get; set; }
-        IEnumerable<RevenueByEmployee> revenueByEmployee { get; set; }
-
-        protected int getOpportunitiesResultCount;
-
-        protected int getTasksResultCount;
+        //await Console.Out.WriteLineAsync($"TheMovie 인증 : {res.StatusCode}");
     }
-
-    public class Stats
-    {
-        public DateTime Month { get; set; }
-        public decimal Revenue { get; set; }
-
-        public int Opportunities { get; set; }
-        public decimal AverageDealSize { get; set; }
-        public double Ratio { get; set; }
-    }
-
-    public class RevenueByCompany
-    {
-        public string Company { get; set; }
-        public decimal Revenue { get; set; }
-    }
-
-    public class RevenueByEmployee
-    {
-        public string Employee { get; set; }
-        public decimal Revenue { get; set; }
-    }
-
-    public class RevenueByMonth
-    {
-        public DateTime Month { get; set; }
-        public decimal Revenue { get; set; }
-    }
-
 }

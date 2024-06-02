@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.AspNetCore.Components.Authorization;
 using Radzen;
+using System.Net.Http.Headers;
 using Yamine;
 using Yamine.Services;
+using static System.Net.WebRequestMethods;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -25,6 +26,15 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().
 builder.Services.AddHttpClient<SecurityService>(client => { client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress); });
 builder.Services.AddScoped<SecurityService>();
 
+var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie");
+
+builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
+{
+    client.BaseAddress = new Uri(movieUrl);
+    client.DefaultRequestHeaders.Add("accept","application/json");
+    client.DefaultRequestHeaders.Authorization
+                         = new AuthenticationHeaderValue("Bearer", builder.Configuration.GetSection("Tokens").GetValue<string>("TheMovie"));
+});
 
 
 var app = builder.Build();

@@ -34,10 +34,10 @@
             <RadzenText Text="Yams House" TextStyle="Radzen.Blazor.TextStyle.Subtitle1" class="rz-mb-0" style="color: var(--rz-primary-light);" />
         </RadzenStack>
         <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
-            <RadzenPanelMenuItem Text="Dashboard" Path="" Icon="home" />
+            <RadzenPanelMenuItem Text="Home" Path="" Icon="home" />
+            <RadzenPanelMenuItem Text="Movie" Path="movie" Icon="movie" />
             <RadzenPanelMenuItem Text="Contacts" Path="counter" Icon="perm_contact_calendar" />
-            <RadzenPanelMenuItem Text="Tasks" Path="weather" Icon="work" />
-            <RadzenPanelMenuItem Text="Opportunities" Path="opportunities" Icon="shopping_cart" />
+            @* <RadzenPanelMenuItem Text="Opportunities" Path="opportunities" Icon="shopping_cart" /> *@
             <RadzenPanelMenuItem Text="Settings" Visible="@Security.IsInRole("Sales Manager")">
                 <RadzenPanelMenuItem Text="OpportunityStatuses" Path="opportunity-statuses" />
                 <RadzenPanelMenuItem Text="TaskStatuses" Path="task-statuses" />
