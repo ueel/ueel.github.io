@@ -6,7 +6,7 @@
 
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true"
-                AllowPaging="true" PageSize="@itemCount" PageNumbersCount="@pageNumbersCount"
+                AllowPaging="true" PageSize="@pageItemCount" PageNumbersCount="@pageNumbersCount"
                 PagerHorizontalAlign="HorizontalAlign.Center" ShowPagingSummary="true"
                 LoadData="LoadData" Data="@Movies" Count="@movieCount" IsLoading="@isLoading"
                 LogicalFilterOperator="LogicalFilterOperator.Or" SelectionMode="DataGridSelectionMode.Single" @bind-Value=@SelectedMovies>
