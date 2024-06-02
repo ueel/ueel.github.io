@@ -6,14 +6,14 @@ public partial class NowPlaying
 {
 
     bool allowVirtualization;
-    public IEnumerable<MovieInfo> Movies { get; set; }
+    public IEnumerable<MovieInfo>? Movies { get; set; }
 
 
     protected override async Task OnInitializedAsync()
     {
         var results = await movie.GetNowPlaying(1);
 
-        Movies = results.results;
+        Movies = results?.results;
     }
 
 }
