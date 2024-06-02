@@ -29,6 +29,7 @@ public partial class Popular
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(100);
         movieCount = 1000;
     }
 

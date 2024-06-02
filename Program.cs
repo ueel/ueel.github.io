@@ -4,7 +4,6 @@ using Radzen;
 using System.Net.Http.Headers;
 using Yamine;
 using Yamine.Services;
-using static System.Net.WebRequestMethods;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
