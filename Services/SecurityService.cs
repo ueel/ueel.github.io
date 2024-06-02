@@ -56,14 +56,14 @@ namespace Yamine.Services
 
         public bool IsAuthenticated()
         {
-            return Principal?.Identity.IsAuthenticated == true;
+            return Principal?.Identity?.IsAuthenticated == true;
         }
 
         public async Task<bool> InitializeAsync(AuthenticationState result)
         {
             Principal = result.User;
 #if DEBUG
-            if (Principal.Identity.Name == "admin")
+            if (Principal?.Identity?.Name == "admin")
             {
                 User = new ApplicationUser { Name = "Admin" };
 
@@ -162,7 +162,7 @@ namespace Yamine.Services
             return await httpClient.DeleteAsync(uri);
         }
 
-        public async Task<ApplicationUser> GetUserById(string id)
+        public async Task<ApplicationUser?> GetUserById(string id)
         {
             var uri = new Uri(baseUri, $"ApplicationUsers('{id}')?$expand=Roles");
 
