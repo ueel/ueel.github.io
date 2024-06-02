@@ -9,8 +9,6 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
 builder.Services.AddAuthorizationCore();
 builder.Services.AddRadzenComponents();
 
@@ -27,7 +25,7 @@ builder.Services.AddScoped<SecurityService>();
 
 var movieUrl = builder.Configuration.GetSection("ApiUrls").GetValue<string>("TheMovie") ?? "https://api.themoviedb.org/3/";
 
-Console.WriteLine(Environment.GetEnvironmentVariable("TEST_KEY"));
+Console.WriteLine("Test Key : " + Environment.GetEnvironmentVariable("TEST_KEY"));
 
 builder.Services.AddHttpClient<IMovieService, MovieService>(client =>
 {
